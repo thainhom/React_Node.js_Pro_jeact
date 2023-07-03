@@ -51,24 +51,40 @@ Rikkei Academy Da Nang - ReactJS Project Template
 
 ## 4. Hướng dẫn cơ bản
 
-### 4.1. Cài đặt:
+### 4.1. Clone source:
+```bash
+git clone https://github.com/rikkei-quanght/ra-dn-reactjs-tutorial.git
+```
+
+### 4.2. Di chuyển vào thư mục:
+```bash
+cd ra-dn-reactjs-tutorial
+```
+
+### 4.3. Switch to branch template/project-template:
+
+```bash
+git checkout template/project-template
+```
+
+### 4.4. Cài đặt thư viện:
 Chạy câu lệnh phía dưới ở thư mục root (thư mục chứa file `package.json`)
 ```bash
 npm install
 ```
 
-### 4.2. Khởi động ứng dụng:
+### 4.5. Khởi động ứng dụng:
 Chạy câu lệnh phía dưới ở thư mục root (thư mục chứa file `package.json`)
 ```bash
 npm start
 ```
 
-### 4.3. Đường dẫn:
+### 4.6. Đường dẫn:
 
-#### 4.3.1. Trang quản trị viên
+#### 4.6.1. Trang quản trị viên
 
 Base URL `http://localhost:3000/admin/`
 
-#### 4.3.2. Trang dành cho khách hàng
+#### 4.6.2. Trang dành cho khách hàng
 
 Base URL `http://localhost:3000/`
