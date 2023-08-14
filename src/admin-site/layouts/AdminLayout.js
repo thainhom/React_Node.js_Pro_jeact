@@ -1,12 +1,62 @@
-import { Outlet } from "react-router-dom";
-import { Container } from "react-bootstrap";
+import { useEffect, useState } from "react";
+import { useDispatch } from "react-redux";
+
+import { Outlet, useNavigate } from "react-router-dom";
+import { Container, Row, Col } from "react-bootstrap";
+
+import AdminHeaderComponent from "../components/partials/AdminHeaderComponent";
+import AdminFooterComponent from "../components/partials/AdminFooterComponent";
+import AdminMenuComponent from "../components/partials/AdminMenuComponent";
+
+import authApi from "../../apis/auth.api";
+import { logout, setAdminAuth } from "../store/actions/adminAuthAction";
 
 function AdminLayout() {
+    const dispatch = useDispatch();
+    const navigate = useNavigate();
+
+    const [auth, setAuth] = useState({});
+
+    useEffect(() => {
+        authApi.getAuth()
+            .then(response => {
+                if (response.role === 1) {
+                    setAuth(response);
+                    dispatch(setAdminAuth(response));
+                } else {
+                    dispatch(logout());
+                    navigate('/admin/login');
+                }
+            })
+            .catch(error => {
+                if (error.response.status === 401) {
+                    alert(error.response.statusText);
+                    dispatch(logout());
+                    navigate('/admin/login');
+                } else {
+                    alert(error.response.statusText);
+                }
+            })
+    }, []);
+
     return (
         <Container>
-            <div>Header <code>(FIXME: src/admin-site/layouts/AdminLayout.js)</code></div>
-            <Outlet />
-            <div>Footer <code>(FIXME: src/admin-site/layouts/AdminLayout.js)</code></div>
+            <header>
+                <AdminHeaderComponent />
+            </header>
+            <Row>
+                <Col md={2}>
+                    <AdminMenuComponent auth={auth} />
+                </Col>
+                <Col md={10}>
+                    <div className="m-4">
+                        <Outlet />
+                    </div>
+                    <footer>
+                        <AdminFooterComponent />
+                    </footer>
+                </Col>
+            </Row>
         </Container>
     );
 };

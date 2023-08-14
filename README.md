@@ -11,6 +11,8 @@ Rikkei Academy Da Nang - ReactJS Project Template
 |2|React Router|
 |3|React Bootstrap|
 |4|Redux Toolkit|
+|5|Axios|
+|6|MomentJS|
 
 ## 3. Cấu trúc thư mục
 

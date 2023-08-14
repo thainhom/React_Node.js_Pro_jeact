@@ -1,6 +1,8 @@
 function AdminFooterComponent() {
     return (
-        <>AdminFooterComponent</>
+        <div className="admin-footer">
+            Copyright @2023 by Rikkei Academy
+        </div>
     );
 };
 
