@@ -28,7 +28,7 @@ function AdminMenuComponent({ auth }) {
     return (
         <div className="bg-secondary p-1 pb-5">
             <div className="text-center">
-                <img src={getStaticResourceUrl(auth.avatar)} width="160px" alt={auth.username}/>
+                <img src={getStaticResourceUrl(auth.avatar)} width="160px" alt={auth.username} />
                 <p className="text-white">{auth.username}</p>
             </div>
             <Nav className="flex-column text-white nav-pills nav-fill">

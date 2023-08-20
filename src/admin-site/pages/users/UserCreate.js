@@ -22,7 +22,7 @@ function UserCreate() {
 
     return (
         <>
-            <h1>Thêm mới người dùng</h1>
+            <h1 className="text-white">Thêm mới người dùng</h1>
             <UserForm onSubmit={handleAdd} onCancel={() => navigate('/admin/users')} />
         </>
     );

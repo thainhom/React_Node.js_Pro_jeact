@@ -7,10 +7,10 @@ const initialUsers = window.localStorage.getItem('users')
     : [
         {
             id: 1,
-            username: 'QuangHT',
-            email: 'quanght@rikkeisoft.com',
-            first_name: 'Hoàng',
-            last_name: 'Thế Quang',
+            username: 'thailq',
+            email: 'thailq@gmail.com',
+            first_name: 'Thái',
+            last_name: 'Lê Quang',
             password: 'Password123',
             role: 1,
             created_at: moment().format('YYYY-MM-DD HH:mm:ss'),

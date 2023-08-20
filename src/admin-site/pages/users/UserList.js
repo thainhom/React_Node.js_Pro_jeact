@@ -121,7 +121,7 @@ function UserList() {
 
     return (
         <>
-            <h1>Danh sách người dùng</h1>
+            <h1 className="text-white">Danh sách người dùng</h1>
             <Form className="row m-1 mb-3" onSubmit={handleSearch}>
                 <div className="col-8">
                     <Form.Control type="text" value={searchInputValue} onChange={(event) => setSearchInputValue(event.target.value)} placeholder="Nhập từ khóa" />

@@ -37,7 +37,7 @@ function AdminPaginationComponent({ total, setPage }) {
                 <Pagination.Next disabled={currentPage === totalPage} onClick={() => handleChangePage(currentPage + 1)} />
                 <Pagination.Last disabled={currentPage === totalPage} onClick={() => handleChangePage(totalPage)} />
             </Pagination>
-            <p className="float-end mx-3"><strong>Tổng số bản ghi:</strong> {total}</p>
+            <p className="float-end mx-3 text-white"><strong>Tổng số bản ghi:</strong> {total}</p>
         </>
     );
 };

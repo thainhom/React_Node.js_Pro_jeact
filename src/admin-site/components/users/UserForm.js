@@ -143,48 +143,48 @@ function UserForm({ userId, onSubmit, onCancel }) {
                 user
                     ? <Form onSubmit={handleSubmit}>
                         < Form.Group className="mb-3" >
-                            <Form.Label>Tên đăng nhập <span className="text-danger">*</span></Form.Label>
+                            <Form.Label className="text-white">Tên đăng nhập <span className="text-danger">*</span></Form.Label>
                             <Form.Control type="text" name="username" value={user.username} onChange={handleChange} disabled={isEdit} isInvalid={errors.get('username')} />
                             <Form.Text className="text-danger">{errors.get('username')}</Form.Text>
                         </Form.Group >
-                        <Form.Group className="mb-3">
+                        <Form.Group className="mb-3 text-white">
                             <Form.Label>Địa chỉ E-mail <span className="text-danger">*</span></Form.Label>
                             <Form.Control type="email" name="email" value={user.email} onChange={handleChange} disabled={isEdit} isInvalid={errors.get('email')} />
                             <Form.Text className="text-danger">{errors.get('email')}</Form.Text>
                         </Form.Group>
-                        <Form.Group className="mb-3">
+                        <Form.Group className="mb-3 text-white">
                             <Form.Label>Họ</Form.Label>
                             <Form.Control type="text" name="first_name" value={user.first_name} onChange={handleChange} isInvalid={errors.get('first_name')} />
                             <Form.Text className="text-danger">{errors.get('first_name')}</Form.Text>
                         </Form.Group>
-                        <Form.Group className="mb-3">
+                        <Form.Group className="mb-3 text-white">
                             <Form.Label>Tên</Form.Label>
                             <Form.Control type="text" name="last_name" value={user.last_name} onChange={handleChange} isInvalid={errors.get('last_name')} />
                             <Form.Text className="text-danger">{errors.get('last_name')}</Form.Text>
                         </Form.Group>
-                        <Form.Group className="mb-3">
+                        <Form.Group className="mb-3 text-white ">
                             <Form.Label>Mật khẩu {!isEdit && <span className="text-danger">*</span>}</Form.Label>
                             <Form.Control type="password" name="password" value={password} onChange={handleChange} isInvalid={errors.get('password')} />
                             <Form.Text className="text-danger">{errors.get('password')}</Form.Text>
                         </Form.Group>
-                        <Form.Group className="mb-3">
+                        <Form.Group className="mb-3 text-white">
                             <Form.Label>Xác nhận mật khẩu {!isEdit && <span className="text-danger">*</span>}</Form.Label>
                             <Form.Control type="password" name="confirmation_password" value={confirmationPassword} onChange={handleChange} isInvalid={errors.get('confirmation_password')} />
                             <Form.Text className="text-danger">{errors.get('confirmation_password')}</Form.Text>
                         </Form.Group>
-                        <Form.Group className="mb-3">
+                        <Form.Group className="mb-3 text-white">
                             <Form.Label className="mr-5">Vai trò <span className="text-danger">*</span></Form.Label>
                             <div className="px-3">
                                 <Form.Check inline type="radio" name="role" label="Khách hàng" id="role-1" value={2} checked={user.role === 2} onChange={handleChange} />
                                 <Form.Check inline type="radio" name="role" label="Quản trị viên" id="role-2" value={1} checked={user.role === 1} onChange={handleChange} />
                             </div>
                         </Form.Group>
-                        <Form.Group className="mb-3">
+                        <Form.Group className="mb-3 text-white">
                             <Form.Label>Hình ảnh đại diện</Form.Label>
-                            <Form.Control type="file" name="avatar" accept="image/png, image/jpeg, image/gif" onChange={handleChange} multiple/>
+                            <Form.Control type="file" name="avatar" accept="image/png, image/jpeg, image/gif" onChange={handleChange} multiple />
                             <Form.Text className="text-danger">{errors.get('avatar')}</Form.Text>
                         </Form.Group>
-                        <Form.Group className="mb-3 float-end">
+                        <Form.Group className="mb-3 float-end text-white">
                             <Button type="button" variant="secondary" className="m-1" onClick={onCancel}>Hủy</Button>
                             <Button type="submit" variant="success" className="m-1">Lưu</Button>
                         </Form.Group>

@@ -17,9 +17,9 @@ function CustomerApp() {
         <Provider store={store}>
             <Routes>
                 <Route path="/register" element={<CustomerRegisterPage />} />
-                <Route path="/login" element={<CustomerLoginPage />} />
+                <Route path="/login/users" element={<CustomerLoginPage />} />
                 <Route path="/" element={<CustomerLayout />}>
-                    <Route index element={<CustomerHomePage />} />
+                    <Route path="/home" element={<CustomerHomePage />} />
                     <Route path="*" element={<CustomerNotFoundPage />} />
                 </Route>
             </Routes>

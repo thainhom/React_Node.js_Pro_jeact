@@ -13,7 +13,9 @@ import AdminHomePage from "./pages/AdminHomePage";
 import UserList from "./pages/users/UserList";
 import UserCreate from "./pages/users/UserCreate";
 import UserEdit from "./pages/users/UserEdit";
-
+import ProductList from "./pages/products/ProductList";
+import ProductCreate from "./pages/products/ProductCreate";
+import ProductEdit from "./pages/products/ProductEdit";
 function AdminApp() {
     return (
         <Provider store={store}>
@@ -24,6 +26,9 @@ function AdminApp() {
                     <Route path="users" element={<UserList />} />
                     <Route path="users/new" element={<UserCreate />} />
                     <Route path="users/:id/edit" element={<UserEdit />} />
+                    <Route path="products" element={<ProductList />} />
+                    <Route path="products/new" element={<ProductCreate />} />
+                    <Route path="products/:id/edit" element={<ProductEdit />} />
                     <Route path="*" element={<AdminNotFoundPage />} />
                 </Route>
             </Routes>

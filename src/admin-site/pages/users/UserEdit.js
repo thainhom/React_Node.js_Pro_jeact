@@ -26,7 +26,7 @@ function UserEdit() {
 
     return (
         <>
-            <h1>Chỉnh sửa thông tin người dùng</h1>
+            <h1 className="text-white">Chỉnh sửa thông tin người dùng</h1>
             <UserForm userId={id} onSubmit={handleUpdate} onCancel={() => navigate('/admin/users')} />
         </>
     );

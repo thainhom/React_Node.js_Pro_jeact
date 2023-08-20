@@ -33,13 +33,13 @@ function AdminLoginPage() {
         <Row>
             <Col md={4}></Col>
             <Col md={4}>
-                <h1 className="text-center my-5">Đăng nhập quản trị viên</h1>
+                <h1 className="text-center my-5 text-white">Đăng nhập quản trị viên</h1>
                 <Form onSubmit={handleSubmit}>
-                    <Form.Group className="mb-3">
+                    <Form.Group className="mb-3 text-white">
                         <Form.Label>Tên đăng nhập</Form.Label>
                         <Form.Control type="text" placeholder="Tên đăng nhập" onChange={(event) => setUsername(event.target.value)} />
                     </Form.Group>
-                    <Form.Group className="mb-3">
+                    <Form.Group className="mb-3 text-white">
                         <Form.Label>Mật khẩu</Form.Label>
                         <Form.Control type="password" placeholder="Mật khẩu" onChange={(event) => setPassword(event.target.value)} />
                     </Form.Group>
