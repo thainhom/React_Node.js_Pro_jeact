@@ -6,7 +6,7 @@ const initialProduct = window.localStorage.getItem('products')
     ? JSON.parse(window.localStorage.getItem('products'))
     : [];
 
-const productProducer = createReducer({ products: initialProduct }, {
+const productReducer = createReducer({ products: initialProduct }, {
     ADD_PRODUCT: (state, action) => {
         const newProduct = {
             ...action.payload,
@@ -59,4 +59,4 @@ const productProducer = createReducer({ products: initialProduct }, {
     },
 });
 
-export default productProducer;
+export default productReducer;
