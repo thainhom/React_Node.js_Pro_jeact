@@ -1,15 +1,15 @@
 import { useNavigate } from "react-router-dom";
-import ProductsForm from "../../components/products/ProductsForm";
+import ContactForm from "../../components/contacts/ContactForm";
 
-import userApi from "../../../apis/product.api";
+import contactApi from "../../../apis/contact.api";
 
 function ContactCreate() {
     const navigate = useNavigate();
 
     const handleAdd = (product) => {
-        userApi.createProduct(product)
+        contactApi.createContact(product)
             .then(response => {
-                navigate('/admin/products');
+                navigate('/admin/contacts');
             }).catch(error => {
                 if (error.response.status === 401) {
                     alert(error.response.statusText);
@@ -22,8 +22,8 @@ function ContactCreate() {
 
     return (
         <>
-            <h1 className="text-white">Thêm mới sản phẩm</h1>
-            <ProductsForm onSubmit={handleAdd} onCancel={() => navigate('/admin/products')} />
+            <h1 className="text-white">Thêm mới liên hệ</h1>
+            <ContactForm onSubmit={handleAdd} onCancel={() => navigate('/admin/contacts')} />
         </>
     );
 };

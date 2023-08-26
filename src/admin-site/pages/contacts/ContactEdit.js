@@ -1,19 +1,19 @@
 import { useParams } from "react-router";
 import { useNavigate } from "react-router-dom";
 
-import ProductsFrom from "../../components/products/ProductsForm";
+import ContactForm from "../../components/contacts/ContactForm";
 
-import userApi from "../../../apis/product.api";
+import ContactApi from "../../../apis/contact.api";
 
 function ContactEdit() {
     const navigate = useNavigate();
 
     const { id } = useParams();
 
-    const handleUpdate = (product) => {
-        userApi.updateProduct(id, product)
+    const handleUpdate = (contact) => {
+        ContactApi.updateContact(id, contact)
             .then(() => {
-                navigate('/admin/products');
+                navigate('/admin/contacts');
             }).catch(error => {
                 if (error.response.status === 401) {
                     alert(error.response.statusText);
@@ -26,8 +26,8 @@ function ContactEdit() {
 
     return (
         <>
-            <h1 className="text-white">Chỉnh sửa thông tin sản phẩm</h1>
-            <ProductsFrom productId={id} onSubmit={handleUpdate} onCancel={() => navigate('/admin/products')} />
+            <h1 className="text-white">Chỉnh sửa thông tin liên hệ </h1>
+            <ContactForm contactId={id} onSubmit={handleUpdate} onCancel={() => navigate('/admin/contacts')} />
         </>
     );
 };

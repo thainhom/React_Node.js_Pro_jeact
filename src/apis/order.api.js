@@ -11,7 +11,7 @@ const searchOrders = async (params = {}) => {
 }
 
 const createOrder = async (requestBody) => {
-    return await api.postForm('/orders', requestBody, { headers: getHeaders() })
+    return await api.post('/orders', requestBody, { headers: getHeaders() })
         .then(response => {
             return response.data;
         }).catch(error => {
@@ -31,7 +31,7 @@ const getOrderByOrderId = async (orderId) => {
 }
 
 const updateOrder = async (orderId, requestBody) => {
-    return await api.putForm(`/orders/${orderId}`, requestBody, { headers: getHeaders() })
+    return await api.put(`/orders/${orderId}`, requestBody, { headers: getHeaders() })
         .then(response => {
             return response.data;
         }).catch(error => {

@@ -1,6 +1,6 @@
 function CustomerNotFoundPage() {
     return (
-        <>CustomerNotFoundPage</>
+        <> <div className="text-white">CustomerNotFoundPage</div></>
     );
 };
 

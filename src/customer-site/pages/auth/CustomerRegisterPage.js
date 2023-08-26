@@ -2,6 +2,8 @@ import { useEffect, useState } from "react";
 import { useNavigate } from 'react-router-dom';
 import moment from "moment/moment";
 import "./Register.css";
+import authApi from "../../../apis/auth.api";
+
 function CustomerRegisterPage() {
     const navigate = useNavigate();
     const [username, setUsername] = useState('')
@@ -12,11 +14,9 @@ function CustomerRegisterPage() {
     const [errorEmail, setErrorEmail] = useState('');
     const [errorPassword, setErrorPassword] = useState('');
     const [errorConfirmPassword, setErrorConfirmPassword] = useState('');
-    ////////////////////////////////////////////////////////////////
+
     const [users, setUsers] = useState([]);
-    useEffect(() => {
-        setUsers(window.localStorage.getItem("users") ? JSON.parse(window.localStorage.getItem("users")) : [])
-    }, [])
+
 
     const handleChange = async (e) => {
         const { name, value } = e.target
@@ -41,6 +41,7 @@ function CustomerRegisterPage() {
 
 
     const handleSubmit = async (e) => {
+
         e.preventDefault();
         let hasError = false;
 
@@ -102,9 +103,18 @@ function CustomerRegisterPage() {
             created_at: moment().format('YYYY-MM-DD HH:mm:ss'),
             updated_at: moment().format('YYYY-MM-DD HH:mm:ss'),
         }
-        const newListUsers = [...users, newUser];
-        window.localStorage.setItem("users", JSON.stringify(newListUsers));
-        navigate('/login');
+
+        authApi.register(newUser).then((response) => {
+
+            navigate('customer/login');
+
+        }).catch((error) => {
+            // Xử lý lỗi gọi API (ví dụ: hiển thị thông báo lỗi)
+            console.error("Lỗi đăng ký người dùng:", error);
+            alert(error.message);
+
+        });
+
 
 
     }
@@ -141,7 +151,7 @@ function CustomerRegisterPage() {
                     <label>Confirm Password </label><br></br>
                 </div>
                 <button type="submit"  >
-                    <a >
+                    <a className="text-blue">
                         <span></span>
                         <span></span>
                         <span></span>
@@ -149,7 +159,7 @@ function CustomerRegisterPage() {
                         SUBMIT
                     </a></button>
                 <button>
-                    <a href="/login">
+                    <a href="/login/customer">
                         <span></span>
                         <span></span>
                         <span></span>

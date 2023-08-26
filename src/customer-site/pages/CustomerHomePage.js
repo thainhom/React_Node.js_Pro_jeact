@@ -5,72 +5,58 @@ import Form from 'react-bootstrap/Form';
 import Navbar from 'react-bootstrap/Navbar';
 import Badge from 'react-bootstrap/Badge';
 import { useNavigate } from 'react-router-dom';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { useEffect, useState } from 'react';
 import CustomerPruductsList from './products/CustomerProductsList'
+import authApi from "../../apis/auth.api";
+import { logout } from "../store/actions/customerAuthAction";
 function CustomerHomePage() {
-    const numberOfItems = useSelector(state => state.cartReducer.numberOfItems)
-    const productList = useSelector(state => state.productReducer.product)
+    const numberOfItems = useSelector(state => state.customerCartListReducer.numberOfItems)
     const navigate = useNavigate()
-    // const [searchKeyword, setSearchKeyword] = useState([]);
-    const [filteredProductList, setFilteredProductList] = useState([]);
-    console.log("filteredProductList ", filteredProductList)
+    const dispatch = useDispatch()
+
+
     const handleLogOut = () => {
-        localStorage.removeItem("userLogin");
-        navigate("/login")
-    }
-    const renderProductList = () => {
-        handleSearch("")
-    }
-    useEffect(() => {
-        renderProductList()
-    }, [])
+        authApi.logout().then(response => {
+            dispatch(logout())
+            navigate("/customer/login")
+        }).catch(error => {
+            console.error(error);
+        })
 
-    const handleSearch = (keyWord) => {
-        if (!keyWord) {
-            setFilteredProductList(productList)
-        } else {
-            const searchHome = productList.filter((search) => {
 
-                return (
-                    search.name.toLowerCase().includes(keyWord) ||
-                    search.description.toLowerCase().includes(keyWord)
-                )
-            })
-            setFilteredProductList(searchHome)
-        }
+
     }
+
     return (
         <>
-            <div>CustomerHomePage</div>
-
-            <Link to="/admin">
-                <Button variant="primary">Trang quản trị viên</Button>
-            </Link>
+            <div className="text-white">CustomerHomePage</div>
             <Container>
-                <Navbar expand="lg" className="bg-body-tertiary " style={{ position: 'sticky', top: 0, zIndex: 1000 }}>
+                <Navbar expand="lg"
+                    className="bg-body-tertiary "
+                    style={{
+                        position: 'sticky', top: 0, zIndex: 1000,
+                        backgroundImage: "url('https://tophinhanhdep.com/wp-content/uploads/2021/10/4k-Color-Wallpapers.jpg')",
+                        backgroundSize: 'cover'
+
+                    }}
+
+                >
                     <Container fluid >
                         <Container>
-                            <a href="/home">
+                            <a href="/">
                                 <Button className=" m-1" variant="info">Trang chủ</Button>
                             </a>
+
                             <Link to="/cart" className="float-end m-1" >
                                 <Button variant="warning">Giỏ hàng <Badge>{numberOfItems}</Badge></Button>
                             </Link>
                         </Container>
                         <Form className="d-flex">
-                            <Form.Control style={{
-                                width: '935px',
-                            }}
-                                onChange={(e) => handleSearch(e.target.value.toLowerCase())}
-                                type="search"
-                                placeholder="Tìm kiếm"
-                                className="me-2"
-                                aria-label="Search"
-                            />
+
                             <Button
                                 onClick={handleLogOut}
-                                variant="outline-success">Đăng Xuất</Button>
+                                variant="danger">Đăng Xuất</Button>
                         </Form>
                     </Container>
                 </Navbar >
@@ -81,7 +67,8 @@ function CustomerHomePage() {
                     <Carousel.Item interval={1000}>
                         <img
                             className="d-block w-100"
-                            src="/img/nươc hoa 2 600.jpg"
+
+                            src="/img/anh600.jpg"
                             alt="Dior"
                         />
                         <Carousel.Caption>
@@ -92,7 +79,7 @@ function CustomerHomePage() {
                     <Carousel.Item interval={500}>
                         <img
                             className="d-block w-100"
-                            src="/img/anh600.jpg"
+                            src="/img/nươc hoa 2 600.jpg"
                             alt="Channel"
                         />
                         <Carousel.Caption>
@@ -118,7 +105,7 @@ function CustomerHomePage() {
                 <h1 style={{ color: "white" }} className='text-center'>Danh sách sản phẩm</h1>
 
                 <CustomerPruductsList
-                    productList={filteredProductList}
+
                 />
             </Container >
         </>

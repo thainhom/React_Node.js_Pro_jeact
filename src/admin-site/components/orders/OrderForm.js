@@ -62,19 +62,7 @@ function OrderForm({ orderId, onSubmit, onCancel }) {
 
         const errors = validate();
         if (errors.size === 0) {
-            const formData = new FormData();
-
-            formData.append('serial_number', order.serial_number);
-            formData.append('user_id', order.user_id);
-            formData.append('total_price', order.total_price);
-            formData.append('status', order.status);
-            formData.append('note', order.note);
-
-            if (order.avatar) {
-                formData.append('image', order.image);
-            }
-
-            onSubmit(formData);
+            onSubmit(order);
         } else {
             setErrors(errors);
         }

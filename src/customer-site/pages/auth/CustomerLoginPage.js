@@ -1,46 +1,20 @@
 import { useState } from "react";
+import { useDispatch } from 'react-redux';
 import "./Register.css";
 import { useNavigate } from "react-router-dom";
-
+import authApi from "../../../apis/auth.api";
+import { login } from "../../store/actions/customerAuthAction"
 function CustomerLoginPage() {
-    const [userName, setUserName] = useState("")
+    const [username, setUserName] = useState("")
     const [password, setPassword] = useState("");
     const [errorUsername, setErrorUserName] = useState("");
     const [errorPassword, setErrorPassword] = useState("");
-
     const navigate = useNavigate()
-    const listUser = JSON.parse(localStorage.getItem("users")) ?? [];
-    console.log('listUser', listUser);
-
-    const handleSubmit = (e) => {
-        e.preventDefault();
-        let flag = false
-        // debugger
-        for (let i = 0; i < listUser.length; i++) {
-            if (listUser[i].username === userName
-                && listUser[i].role === 'customer'
-                && listUser[i].password === password) {
-                localStorage.setItem("userLogin", JSON.stringify(listUser[i]));
-                navigate("/home")
-                break;
-
-
-            }
+    const dispatch = useDispatch();
 
 
 
-        }
 
-
-        if (userName.length === 0) {
-            flag = true;
-            setErrorUserName("Tên đăng nhập bắt buộc phải nhập")
-        }
-        if (password.length === 0) {
-            flag = true;
-            setErrorPassword("Mật khẩu bắt buộc phải nhập")
-        }
-    }
     const handleChange = (event) => {
         const { name, value } = event.target
         if (name === "userName") {
@@ -51,7 +25,35 @@ function CustomerLoginPage() {
             setErrorPassword("")
 
         }
+
     }
+
+
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        let flag = false
+
+        if (username.length === 0) {
+            flag = true;
+            setErrorUserName("Tên đăng nhập bắt buộc phải nhập")
+        }
+        if (password.length === 0) {
+            flag = true;
+            setErrorPassword("Mật khẩu bắt buộc phải nhập")
+        }
+
+        if (!flag) {
+            authApi.login(username, password)
+                .then((response) => {
+                    dispatch(login(response.token));
+                    navigate("/");
+                }).catch((error) => {
+                    alert(error.message);
+                });
+        }
+    }
+
 
     return (
         <>   <div className="login-box">
@@ -63,6 +65,7 @@ function CustomerLoginPage() {
                     <span className="error">{errorUsername}</span><br></br><br></br>
                 </div>
 
+
                 <div className="user-box">
                     <input onChange={(e) => handleChange(e)}
                         type="password" name="password" required="" />
@@ -71,13 +74,15 @@ function CustomerLoginPage() {
                 </div>
 
                 <button type="submit" >
-                    <a >
+                    <a className="text-blue">
                         <span></span>
                         <span></span>
                         <span></span>
                         <span></span>
                         SUBMIT
-                    </a></button>
+                    </a>
+
+                </button>
                 <a href="/register">
                     <span></span>
                     <span></span>

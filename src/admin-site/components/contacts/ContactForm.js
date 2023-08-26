@@ -62,18 +62,9 @@ function ContactForm({ contactId, onSubmit, onCancel }) {
 
         const errors = validate();
         if (errors.size === 0) {
-            const formData = new FormData();
 
-            formData.append('full_name', contact.full_name);
-            formData.append('email', contact.email);
-            formData.append('content', contact.content);
-            formData.append('status', contact.status);
 
-            if (contact.avatar) {
-                formData.append('image', contact.image);
-            }
-
-            onSubmit(formData);
+            onSubmit(contact);
         } else {
             setErrors(errors);
         }
@@ -85,9 +76,8 @@ function ContactForm({ contactId, onSubmit, onCancel }) {
         if (contact.full_name.length === 0) {
             errors.set('full_name', 'Tên người liên hệ  không được để trống');
         }
-        if (contact.email !== 'string') {
-            errors.set('email', 'email phải là chuổi')
-        } else if (contact.email.length < 4 || contact.email > 50) {
+
+        if (contact.email.length < 4 || contact.email > 50) {
             errors.set('email', 'Email chỉ cho phép 4 đến 50 ký tự.');
         }
         if (!/^\d+(\.\d[0-9])?$/.test(contact.status)) {
@@ -110,8 +100,8 @@ function ContactForm({ contactId, onSubmit, onCancel }) {
                         </Form.Group >
 
                         <Form.Group className="mb-3 text-white">
-                            <Form.Label>Email người liên hệ  </Form.Label>
-                            <Form.Control type="email" name="email" value={contact.full_name} onChange={handleChange} disabled={isEdit} isInvalid={errors.get('email')} />
+                            <Form.Label>Email người liên hệ <span className="text-danger">*</span>  </Form.Label>
+                            <Form.Control type="email" name="email" value={contact.email} onChange={handleChange} disabled={isEdit} isInvalid={errors.get('email')} />
                             <Form.Text className="text-danger">{errors.get('email')}</Form.Text>
                         </Form.Group>
                         <Form.Group className="mb-3 text-white">

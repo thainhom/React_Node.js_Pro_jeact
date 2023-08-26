@@ -22,11 +22,12 @@ function ContactList() {
     const [selecteContactIds, setSelecteContactIds] = useState([]);
 
     const fetchContacts = () => {
-        contactApi.searchContacts({
-            name: keyword,
-            page: page,
-            limit: NUMBER_RECORDS_PER_PAGE,
-        })
+        contactApi.searchContacts
+            ({
+                name: keyword,
+                page: page,
+                limit: NUMBER_RECORDS_PER_PAGE,
+            })
             .then(data => {
 
                 setContacts(data.records);

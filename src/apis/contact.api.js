@@ -11,7 +11,7 @@ const searchContacts = async (params = {}) => {
 }
 
 const createContact = async (requestBody) => {
-    return await api.postForm('/contacts', requestBody, { headers: getHeaders() })
+    return await api.post('/contacts', requestBody, { headers: getHeaders() })
         .then(response => {
             return response.data;
         }).catch(error => {
@@ -31,7 +31,7 @@ const getContactByContactId = async (contactId) => {
 }
 
 const updateContact = async (contactId, requestBody) => {
-    return await api.putForm(`/contacts/${contactId}`, requestBody, { headers: getHeaders() })
+    return await api.put(`/contacts/${contactId}`, requestBody, { headers: getHeaders() })
         .then(response => {
             return response.data;
         }).catch(error => {

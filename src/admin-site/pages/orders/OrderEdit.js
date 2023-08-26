@@ -5,7 +5,7 @@ import OrderForm from "../../components/orders/OrderForm";
 
 import orderApi from "../../../apis/order.api";
 
-function ProductEdit() {
+function OrderEdit() {
     const navigate = useNavigate();
 
     const { id } = useParams();
@@ -32,4 +32,4 @@ function ProductEdit() {
     );
 };
 
-export default ProductEdit;
+export default OrderEdit;

@@ -5,8 +5,8 @@ import Badge from 'react-bootstrap/Badge';
 import Stack from 'react-bootstrap/Stack';
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { addToCart } from './../../store/actions/customerAuthAction';
-
+import { addToCart } from './../../store/actions/customerCartListAction';
+import { getStaticResourceUrl } from '../../ultilities';
 const CustomerProductsDetail = ({ product, items, setDisPlayitems }) => {
     const [quantity, setQuantity] = useState(1)
     const dispatch = useDispatch();
@@ -25,13 +25,12 @@ const CustomerProductsDetail = ({ product, items, setDisPlayitems }) => {
             quantity: quantity,
         }))
 
-        console.log(product, quantity);
-    }
 
+    }
     return (
 
         <Card>
-            <Card.Img variant="top" src={product.image} />
+            <Card.Img variant="top" src={getStaticResourceUrl(product.image)} />
             <Card.Body>
                 <Card.Title>{product.name}</Card.Title>
                 <Badge bg="secondary">${product.unit_price}</Badge>

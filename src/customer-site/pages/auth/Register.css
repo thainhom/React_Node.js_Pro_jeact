@@ -5,7 +5,9 @@ body {
   margin: 0;
   padding: 0;
   font-family: sans-serif;
-  background: linear-gradient(#141e30, #243b55);
+  background: linear-gradient(#243b55, #243b55);
+  /* #243b55 */
+  /* #141e30 */
 }
 
 .login-box {
