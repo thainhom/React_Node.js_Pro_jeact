@@ -1,6 +1,14 @@
+import { Container } from 'react-bootstrap';
+import CustomerHeaderComponent from "./CustomerHeaderComponent";
 function CustomerMenuComponent() {
     return (
-        <>CustomerMenuComponent</>
+        <>
+            <Container>
+                <CustomerHeaderComponent />
+
+            </Container>
+
+        </>
     );
 };
 

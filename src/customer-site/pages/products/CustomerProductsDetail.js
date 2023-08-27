@@ -4,13 +4,15 @@ import Form from 'react-bootstrap/Form';
 import Badge from 'react-bootstrap/Badge';
 import Stack from 'react-bootstrap/Stack';
 import { useState } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { addToCart } from './../../store/actions/customerCartListAction';
-import { getStaticResourceUrl } from '../../ultilities';
+import { getStaticResourceUrl } from '../../utilities';
+import { useNavigate } from 'react-router-dom';
 const CustomerProductsDetail = ({ product, items, setDisPlayitems }) => {
+    const isLogin = useSelector(state => state.customerAuthReducer.isAuthenticate)
     const [quantity, setQuantity] = useState(1)
     const dispatch = useDispatch();
-
+    const navigate = useNavigate()
     const handleChangeQuantity = (event) => {
         const value = Number(event.target.value)
 
@@ -20,10 +22,15 @@ const CustomerProductsDetail = ({ product, items, setDisPlayitems }) => {
     }
 
     const handleAdd = () => {
-        dispatch(addToCart({
-            ...product,
-            quantity: quantity,
-        }))
+        if (isLogin) {
+            dispatch(addToCart({
+                ...product,
+                quantity: quantity,
+            }))
+        } else {
+            navigate("customer/login")
+        }
+
 
 
     }
