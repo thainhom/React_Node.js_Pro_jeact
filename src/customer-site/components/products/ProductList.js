@@ -34,13 +34,16 @@ function ProductList(props) {
     const [total, setTotal] = useState(0);
     const [keyword, setKeyword] = useState(null);
     const [page, setPage] = useState(1);
+    const [orderPrice, setOrderPrice] = useState("ASC");
     const [products, setProducts] = useState([])
     const [selectedBrands, setSelectedBrands] = useState(['BURBERRY', 'DIOR', 'CHANEL']);
-    const rows = getRows(products)
+    const rows = getRows(products);
+
     const fetchProducts = () => {
         productApi.searchProducts({
             name: keyword,
             page: page,
+            orderPrice: orderPrice,
             limit: NUMBER_RECORDS_PER_PAGE,
         }).then(data => {
 
@@ -59,7 +62,7 @@ function ProductList(props) {
 
     useEffect(() => {
         fetchProducts();
-    }, [keyword, page]);
+    }, [keyword, page, orderPrice]);
 
     const handleSearch = (event) => {
         event.preventDefault();
@@ -79,10 +82,9 @@ function ProductList(props) {
                     <div className="col-4">
                         <Button type="submit" variant="info mx-1">Tìm kiếm</Button>
                     </div>
-                    {props.isShowSort && <Form.Select className="w-50" aria-label="Default select example">
-                        <option>Lọc giá</option>
-                        <option value="1">Tăng dần</option>
-                        <option value="2">Giảm dần</option>
+                    {props.isShowSort && <Form.Select className="w-50" aria-label="Default select example" value={orderPrice} onChange={(e) => setOrderPrice(e.target.value)}>
+                        <option value="ASC">Giá tăng dần</option>
+                        <option value="DESC">Giá giảm dần</option>
                     </Form.Select>}
                 </div>
                 {props.isShowCategory && ['BURBERRY', 'DIOR', 'CHANEL',].map((brand) => (
