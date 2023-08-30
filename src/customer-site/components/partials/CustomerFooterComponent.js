@@ -2,8 +2,6 @@ import "./Footer.css";
 import { Link } from "react-router-dom";
 
 function CustomerFooterComponent() {
-
-
     return (
         <div class="footer-card">
             <footer>
@@ -23,7 +21,7 @@ function CustomerFooterComponent() {
                         <nav>
                             <ul>
                                 <li>
-                                    <Link to='/customer/menu'>Sản phẩm</Link>
+                                    <Link to='/products'>Sản phẩm</Link>
                                 </li>
                                 <li>
                                     <a href="/aboutUs">Câu chuyện của chúng tôi</a>
@@ -46,10 +44,10 @@ function CustomerFooterComponent() {
                         <h4>Liên hệ</h4>
                         <ul class="link-list">
                             <li>
-                                <Link to='/customer/contact'>Để lại lời nhắn</Link>
+                                <Link to='/contact'>Để lại lời nhắn</Link>
                             </li>
                             <li>
-                                <a href="">info@ThaiNhom.com</a>
+                                <a href="https://www.facebook.com/le.quangthai.56/">info@ThaiNhom.com</a>
                             </li>
                             <li>
                                 <a href="">www.ThaiNhom.com</a>
@@ -58,7 +56,7 @@ function CustomerFooterComponent() {
                                 <a href="">Da Nang City, Vietnam</a>
                             </li>
                             <li>
-                                <a href="">+07-7777-79</a>
+                                <a href="">+084 905 602 739</a>
                             </li>
                         </ul>
                     </div>
@@ -81,7 +79,5 @@ function CustomerFooterComponent() {
         </div>
     );
 }
-
-
 
 export default CustomerFooterComponent;

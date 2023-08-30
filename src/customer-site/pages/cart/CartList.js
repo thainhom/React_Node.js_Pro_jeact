@@ -5,10 +5,10 @@ import { useSelector, useDispatch } from 'react-redux';
 import { deleteFromCart, changeQuantity } from '../../store/actions/customerCartListAction';
 
 function CartList() {
+    const dispatch = useDispatch();
 
-    const cart = useSelector(state => state.customerCartListReducer.cart)
-    const total = useSelector(state => state.customerCartListReducer.total)
-    const dispatch = useDispatch()
+    const cart = useSelector(state => state.customerCartListReducer.cart);
+    const total = useSelector(state => state.customerCartListReducer.total);
 
     const handleChange = (e, id) => {
         const quantity = Number(e.target.value)

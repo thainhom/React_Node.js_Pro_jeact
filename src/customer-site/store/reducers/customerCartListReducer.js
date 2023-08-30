@@ -2,7 +2,6 @@ import { createReducer } from "@reduxjs/toolkit"
 import moment from "moment/moment";
 import getNextId from "../../../admin-site/utilities/getNextId";
 
-
 const calculateTotal = (cart) => {
     let total = 0;
 
@@ -18,7 +17,6 @@ const getCartFromLocalStorage = () => {
 }
 
 const cart = getCartFromLocalStorage();
-
 
 const initState = {
     cart: cart,
@@ -104,13 +102,6 @@ const customerCartListReducer = createReducer(initState, {
 
 
     },
-
-
-
-
-
-
-
 })
 
 export default customerCartListReducer

@@ -3,17 +3,16 @@ import { useDispatch } from 'react-redux';
 import "./Register.css";
 import { useNavigate } from "react-router-dom";
 import authApi from "../../../apis/auth.api";
-import { login } from "../../store/actions/customerAuthAction"
+import { login } from "../../store/actions/customerAuthAction";
+
 function CustomerLoginPage() {
+    const navigate = useNavigate()
+    const dispatch = useDispatch();
+
     const [username, setUserName] = useState("")
     const [password, setPassword] = useState("");
     const [errorUsername, setErrorUserName] = useState("");
     const [errorPassword, setErrorPassword] = useState("");
-    const navigate = useNavigate()
-    const dispatch = useDispatch();
-
-
-
 
     const handleChange = (event) => {
         const { name, value } = event.target
@@ -23,12 +22,8 @@ function CustomerLoginPage() {
         } else if (name === "password") {
             setPassword(value)
             setErrorPassword("")
-
         }
-
     }
-
-
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -54,7 +49,6 @@ function CustomerLoginPage() {
         }
     }
 
-
     return (
         <>   <div className="login-box">
             <h2>Login</h2>
@@ -64,7 +58,6 @@ function CustomerLoginPage() {
                     <label>Username</label><br></br>
                     <span className="error">{errorUsername}</span><br></br><br></br>
                 </div>
-
 
                 <div className="user-box">
                     <input onChange={(e) => handleChange(e)}
@@ -81,7 +74,6 @@ function CustomerLoginPage() {
                         <span></span>
                         SUBMIT
                     </a>
-
                 </button>
                 <a href="/register">
                     <span></span>
@@ -90,7 +82,6 @@ function CustomerLoginPage() {
                     <span></span>
                     Register
                 </a>
-
             </form>
         </div>
         </>

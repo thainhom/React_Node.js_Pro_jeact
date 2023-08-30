@@ -15,21 +15,23 @@ import Cart from './pages/cart/Cart';
 import CustomerHeaderComponent from "./components/partials/CustomerHeaderComponent";
 import CustomerFooterComponent from '.././customer-site/components/partials/CustomerFooterComponent';
 import CustomerMenuComponent from "./components/partials/CustomerMenuComponent";
-import CustomerContacts from ".././customer-site/pages/contacts/CustomerContacts"
+import CustomerContacts from "./pages/contacts/CustomerContacts"
+import CustomerProductList from "./pages/products/CustomerProductList";
+
 function CustomerApp() {
     return (
         <Provider store={store}>
             <Routes>
-                <Route path="/register" element={<CustomerRegisterPage />} />
-                <Route path="/customer/login" element={<CustomerLoginPage />} />
-                <Route path="/cart" element={<Cart />} />
-                <Route path="/customer/header" element={<CustomerHeaderComponent />} />
-                <Route path="/customer/footer" element={<CustomerFooterComponent />} />
-                <Route path="/customer/menu" element={<CustomerMenuComponent />} />
-
-                <Route path="/customer/contact" element={<CustomerContacts />} />
+                <Route path="register" element={<CustomerRegisterPage />} />
+                <Route path="login" element={<CustomerLoginPage />} />
                 <Route path="/" element={<CustomerLayout />}>
                     <Route index element={<CustomerHomePage />} />
+                    <Route path="cart" element={<Cart />} />
+                    <Route path="header" element={<CustomerHeaderComponent />} />
+                    <Route path="footer" element={<CustomerFooterComponent />} />
+                    <Route path="products" element={<CustomerProductList />} />
+
+                    <Route path="contact" element={<CustomerContacts />} />
                     <Route path="*" element={<CustomerNotFoundPage />} />
 
                 </Route>

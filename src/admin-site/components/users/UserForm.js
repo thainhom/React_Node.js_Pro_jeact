@@ -5,7 +5,7 @@ import { Form, Button } from "react-bootstrap";
 
 import ResourceNotFound from "../errors/ResourceNotFound";
 
-import contactApi from "../../../apis/contact.api";
+import userApi from "../../../apis/contact.api";
 
 function UserForm({ userId, onSubmit, onCancel }) {
     const [isEdit, setIsEdit] = useState(false);
@@ -31,7 +31,7 @@ function UserForm({ userId, onSubmit, onCancel }) {
                 avatar: null
             });
         } else {
-            contactApi.getUserByUserId(userId)
+            userApi.getUserByUserId(userId)
                 .then(response => {
                     setUser({
                         ...response,

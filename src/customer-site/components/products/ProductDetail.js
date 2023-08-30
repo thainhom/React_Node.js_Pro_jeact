@@ -8,11 +8,14 @@ import { useDispatch, useSelector } from 'react-redux';
 import { addToCart } from './../../store/actions/customerCartListAction';
 import { getStaticResourceUrl } from '../../utilities';
 import { useNavigate } from 'react-router-dom';
-const CustomerProductsDetail = ({ product, items, setDisPlayitems }) => {
-    const isLogin = useSelector(state => state.customerAuthReducer.isAuthenticate)
-    const [quantity, setQuantity] = useState(1)
+
+const ProductDetail = ({ product, items, setDisPlayitems }) => {
     const dispatch = useDispatch();
     const navigate = useNavigate()
+
+    const isLogin = useSelector(state => state.customerAuthReducer.isAuthenticate)
+    const [quantity, setQuantity] = useState(1)
+
     const handleChangeQuantity = (event) => {
         const value = Number(event.target.value)
 
@@ -30,10 +33,8 @@ const CustomerProductsDetail = ({ product, items, setDisPlayitems }) => {
         } else {
             navigate("customer/login")
         }
-
-
-
     }
+
     return (
 
         <Card>
@@ -50,4 +51,5 @@ const CustomerProductsDetail = ({ product, items, setDisPlayitems }) => {
         </Card>
     )
 }
-export default CustomerProductsDetail
+
+export default ProductDetail

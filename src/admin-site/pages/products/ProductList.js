@@ -7,15 +7,12 @@ import AdminPaginationComponent, { NUMBER_RECORDS_PER_PAGE } from "../../compone
 
 import userApi from "../../../apis/product.api";
 
-
 function ProductList() {
     const navigate = useNavigate();
 
     const [products, setProducts] = useState([]);
     const [total, setTotal] = useState(0);
-
     const [searchInputValue, setSearchInputValue] = useState('');
-
     const [keyword, setKeyword] = useState(null);
     const [page, setPage] = useState(1);
 

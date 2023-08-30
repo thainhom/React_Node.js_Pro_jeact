@@ -13,7 +13,7 @@ const customerAuthReducer = createReducer({ isAuthenticate: false }, {
         window.localStorage.removeItem('X-API-Key');
         return {
             ...state,
-            isAuthenticate: true
+            isAuthenticate: false
         }
     }
 });

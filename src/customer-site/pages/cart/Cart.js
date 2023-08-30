@@ -1,21 +1,19 @@
-import Container from 'react-bootstrap/Container';
 import Button from 'react-bootstrap/Button';
-import { Link } from 'react-router-dom';
 import Form from 'react-bootstrap/Form';
 import CartList from '../cart/CartList';
 import { checkout } from '../../store/actions/customerCartListAction';
 import { useDispatch, useSelector } from 'react-redux';
 import { useState } from 'react';
 import orderApi from '../../../apis/order.api';
+
 function Cart() {
     const dispatch = useDispatch();
-
-    const [note, setNote] = useState('')
 
     const numberOfItems = useSelector(state => state.customerCartListReducer.numberOfItems)
     const orders = useSelector(state => state.customerCartListReducer.cart)
     const total_price = useSelector(state => state.customerCartListReducer.total)
 
+    const [note, setNote] = useState('');
 
     const handleCheckout = () => {
         const isCheckout = window.confirm('Bạn có chắc chắn muốn đặt đơn hàng này ?')
@@ -35,11 +33,8 @@ function Cart() {
     }
 
     return (
-        <Container>
-            <Link to="/" className="float-end m-1">
-                <Button variant="info">Trang chủ</Button>
-            </Link>
-            <h1 className='text-white text-center'>Giỏ hàng của bạn</h1>
+        <div>
+            <h1 className='text-white text-center mt-3'>Giỏ hàng của bạn</h1>
             <CartList />
 
             {numberOfItems > 0
@@ -55,7 +50,7 @@ function Cart() {
                     </>
                 )
                 : null}
-        </Container>
+        </div>
     )
 }
 

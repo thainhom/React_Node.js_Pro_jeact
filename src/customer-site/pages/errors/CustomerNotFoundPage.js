@@ -1,6 +1,8 @@
 function CustomerNotFoundPage() {
     return (
-        <> <div className="text-white">CustomerNotFoundPage</div></>
+        <>
+            <h2 className="text-danger text-center mt-3">Trang không tồn tại</h2>
+        </>
     );
 };
 

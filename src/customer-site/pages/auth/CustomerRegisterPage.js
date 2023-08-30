@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useNavigate } from 'react-router-dom';
 import moment from "moment/moment";
 import "./Register.css";
@@ -6,6 +6,7 @@ import authApi from "../../../apis/auth.api";
 
 function CustomerRegisterPage() {
     const navigate = useNavigate();
+
     const [username, setUsername] = useState('')
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
@@ -14,9 +15,6 @@ function CustomerRegisterPage() {
     const [errorEmail, setErrorEmail] = useState('');
     const [errorPassword, setErrorPassword] = useState('');
     const [errorConfirmPassword, setErrorConfirmPassword] = useState('');
-
-    const [users, setUsers] = useState([]);
-
 
     const handleChange = async (e) => {
         const { name, value } = e.target
@@ -39,9 +37,7 @@ function CustomerRegisterPage() {
         return emailRegex.test(email);// test để kiểm tra 1 chuỗi có khớp vs biểu thức hay không  và trả về true false
     };
 
-
     const handleSubmit = async (e) => {
-
         e.preventDefault();
         let hasError = false;
 
@@ -67,29 +63,9 @@ function CustomerRegisterPage() {
         if (password !== confirmPassword) {
             hasError = true;
             alert("mật khẩu không trùng khớp")
-
-
         }
-
 
         // TODO: Kiểm tra mật khẩu và xác nhận mật khẩu có trùng nhau không
-
-        for (let i = 0; i < users.length; i++) {
-            if (users[i].username === username || users[i].email === email) {
-                if (users[i].username === username) {
-                    hasError = true;
-                    await setErrorUsername("Tên đăng nhập đã tồn tại")
-                }
-                if (users[i].email === email) {
-                    hasError = true;
-                    await setErrorEmail("Địa chỉ email đã tồn tại")
-                }
-                break;
-
-            }
-        }
-
-
 
         if (hasError) {
             return;
@@ -114,10 +90,8 @@ function CustomerRegisterPage() {
             alert(error.message);
 
         });
-
-
-
     }
+
     return (
         <div className="login-box">
             <h2>Register</h2>
@@ -166,7 +140,6 @@ function CustomerRegisterPage() {
                         <span></span>
                         LOGIN
                     </a></button>
-
             </form>
         </div>
     );
