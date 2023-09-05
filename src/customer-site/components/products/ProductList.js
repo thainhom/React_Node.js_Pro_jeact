@@ -36,7 +36,7 @@ function ProductList(props) {
     const [page, setPage] = useState(1);
     const [orderPrice, setOrderPrice] = useState("ASC");
     const [products, setProducts] = useState([])
-    const [selectedBrands, setSelectedBrands] = useState(['BURBERRY', 'DIOR', 'CHANEL']);
+    const [categories, setCategories] = useState([]);
     const rows = getRows(products);
 
     const fetchProducts = () => {
@@ -45,6 +45,7 @@ function ProductList(props) {
             page: page,
             orderPrice: orderPrice,
             limit: NUMBER_RECORDS_PER_PAGE,
+            categories: categories,
         }).then(data => {
 
             setProducts(data.records);
@@ -62,12 +63,31 @@ function ProductList(props) {
 
     useEffect(() => {
         fetchProducts();
-    }, [keyword, page, orderPrice]);
+    }, [keyword, page, orderPrice, categories]);
 
     const handleSearch = (event) => {
         event.preventDefault();
         setKeyword(searchInputValue);
+
+
     }
+
+    const handleChangeCategory = (event) => {
+        if (event.target.checked) {
+            setCategories([
+                ...categories,
+                event.target.value
+
+            ])
+        } else {
+            const categoryValue = categories.filter(category => category !== event.target.value)
+            setCategories(categoryValue)
+        }
+
+      
+    }
+
+
 
     return (
         <>
@@ -87,18 +107,20 @@ function ProductList(props) {
                         <option value="DESC">Giá giảm dần</option>
                     </Form.Select>}
                 </div>
-                {props.isShowCategory && ['BURBERRY', 'DIOR', 'CHANEL',].map((brand) => (
+                {props.isShowCategory && ['Burberry', 'dior', 'CHANEL'].map((category) => (
                     <Form.Check
-                        name={brand}
+                        value={category}
+                        name="category"
                         className='text-white'
                         type='checkbox'
-                        id={brand}
-                        label={brand}
+                        id={category}
+                        label={category}
                         inline={true}
+                        onChange={handleChangeCategory}
+
                     />
                 ))}
-                <div>
-                </div>
+
             </Form><br></br>
             {rows.map((row, index) => {
                 return (

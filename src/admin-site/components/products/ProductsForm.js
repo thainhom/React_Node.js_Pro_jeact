@@ -50,16 +50,24 @@ function ProductsFrom({ productId, onSubmit, onCancel }) {
                     [name]: value === '' ? '' : parseFloat(value),
                 });
             }
-        } else {
+        } else if (name === 'image') {
+            setProduct({
+                ...product,
+                [name]: event.target.files[0]
+            })
+        }
+        else {
             setProduct({
                 ...product,
                 [name]: value,
+
             });
+
         }
     }
 
     const handleSubmit = async (event) => {
-        console.log(product.image)
+
         event.preventDefault();
 
         const errors = validate();
@@ -72,7 +80,7 @@ function ProductsFrom({ productId, onSubmit, onCancel }) {
             formData.append('unit_price', product.unit_price);
             formData.append('description', product.description);
 
-            if (product.avatar) {
+            if (product.image) {
                 formData.append('image', product.image);
             }
 
@@ -85,8 +93,8 @@ function ProductsFrom({ productId, onSubmit, onCancel }) {
     const validate = () => {
         const errors = new Map();
 
-        if (product.sku.length < 4 || product.sku.length > 10) {
-            errors.set('sku', 'Mã sản phẩm bắt buộc nhập từ 4 đến 10 ký tự.');
+        if (product.sku.length > 10) {
+            errors.set('sku', 'Mã sản phẩm chỉ cho phép đến 10 ký tự.');
         }
 
         if (product.name.length < 4 || product.name.length > 100) {
@@ -101,8 +109,8 @@ function ProductsFrom({ productId, onSubmit, onCancel }) {
             errors.set('unit_price', 'Giá tiền phải là một số hợp lệ, có tối đa 2 chữ số sau dấu thập phân.');
         }
 
-        if (product.description.length < 8) {
-            errors.set('description', 'mô tả bắt buộc nhập ít nhất 8 ');
+        if (product.description.length < 2) {
+            errors.set('description', 'mô tả bắt buộc nhập hơn 2 ký tự ');
         }
 
         return errors;

@@ -37,28 +37,34 @@ function CustomerRegisterPage() {
         return emailRegex.test(email);// test để kiểm tra 1 chuỗi có khớp vs biểu thức hay không  và trả về true false
     };
 
-    const handleSubmit = async (e) => {
+    const handleSubmit = (e) => {
         e.preventDefault();
         let hasError = false;
 
         if (username.trim().length === 0) {
             hasError = true;
-            await setErrorUsername("Bắt buộc nhập tên đăng nhập.")
+            setErrorUsername("Bắt buộc nhập tên đăng nhập.")
+        } else if (username.length < 2 || username.length > 10) {
+            hasError = true;
+            setErrorUsername('Tên đăng nhập chỉ cho phép 4 đến 10 ký tự')
         }
         if (email.trim().length === 0) {
             hasError = true;
-            await setErrorEmail("Bắt buộc nhập địa chỉ email.")
+            setErrorEmail("Bắt buộc nhập địa chỉ email.")
         } else if (!validateEmail(email)) {
             hasError = true;
-            await setErrorEmail("Địa chỉ email không hợp lệ. Vui lòng nhập đúng định dạng email.");
+            setErrorEmail("Địa chỉ email không hợp lệ. Vui lòng nhập đúng định dạng email.");
         }
         if (password.trim().length === 0) {
             hasError = true;
-            await setErrorPassword("Bắt buộc nhập mật khẩu.")
+            setErrorPassword("Bắt buộc nhập mật khẩu.")
+        } else if (password.length < 8 || password.length > 20) {
+            hasError = true;
+            setErrorPassword("password phải ít nhất 8 ký tự và không quá 20 ký tự")
         }
         if (confirmPassword.trim().length === 0) {
             hasError = true;
-            await setErrorConfirmPassword("Bắt buộc nhập xác nhận mật khẩu.")
+            setErrorConfirmPassword("Bắt buộc nhập xác nhận mật khẩu.")
         }
         if (password !== confirmPassword) {
             hasError = true;
@@ -82,7 +88,7 @@ function CustomerRegisterPage() {
 
         authApi.register(newUser).then((response) => {
 
-            navigate('customer/login');
+            navigate('/login');
 
         }).catch((error) => {
             // Xử lý lỗi gọi API (ví dụ: hiển thị thông báo lỗi)

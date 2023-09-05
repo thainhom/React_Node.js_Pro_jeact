@@ -5,7 +5,7 @@ import { Form, Button } from "react-bootstrap";
 
 import ResourceNotFound from "../errors/ResourceNotFound";
 
-import userApi from "../../../apis/contact.api";
+import userApi from "../../../apis/user.api";
 
 function UserForm({ userId, onSubmit, onCancel }) {
     const [isEdit, setIsEdit] = useState(false);
