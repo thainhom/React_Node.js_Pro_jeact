@@ -1,4 +1,4 @@
-import { Table, Button, Form } from "react-bootstrap";
+import { Table, Button, Form, Badge } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import moment from "moment/moment";
@@ -6,6 +6,25 @@ import moment from "moment/moment";
 import AdminPaginationComponent, { NUMBER_RECORDS_PER_PAGE } from "../../components/table/AdminPaginationComponent";
 
 import orderApi from "../../../apis/order.api";
+const formatStatus = (status) => {
+    if (status === 1) {
+        return (<Badge bg='warning'>Đơn hàng mới </Badge>)
+    } else if (status === 2) {
+        return (<Badge bg="secondary">Đã xác thực </Badge>)
+    } else if (status === 3) {
+        return (<Badge bg="info">Đang giao hàng </Badge>)
+    } else if (status === 4) {
+        return (<Badge bg="success">Đã hoàn thành </Badge>)
+    } else if (status === 5) {
+        return (<Badge bg="primary">Đã thánh toán </Badge>)
+    } else if (status === 6) {
+        return (<Badge bg="dark">Hoàn tất </Badge>)
+    } else if (status === 7) {
+        return (<Badge bg='danger'>Bị từ chối </Badge>)
+    }
+
+
+}
 
 
 function OrderList() {
@@ -149,7 +168,7 @@ function OrderList() {
                                 <td>{order.user_id}</td>
                                 <td>{moment(order.order_at).format('YYYY-MM-DD HH:mm')}</td>
                                 <td>{order.total_price}</td>
-                                <td>{order.status}</td>
+                                <td>{formatStatus(order.status)}</td>
                                 <td>{order.note}</td>
                                 <td>{moment(order.created_at).format('YYYY-MM-DD HH:mm')}</td>
                                 <td>{moment(order.updated_at).format('YYYY-MM-DD HH:mm')}</td>

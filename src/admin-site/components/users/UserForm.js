@@ -172,6 +172,7 @@ function UserForm({ userId, onSubmit, onCancel }) {
                             <Form.Control type="password" name="confirmation_password" value={confirmationPassword} onChange={handleChange} isInvalid={errors.get('confirmation_password')} />
                             <Form.Text className="text-danger">{errors.get('confirmation_password')}</Form.Text>
                         </Form.Group>
+
                         <Form.Group className="mb-3 text-white">
                             <Form.Label className="mr-5">Vai trò <span className="text-danger">*</span></Form.Label>
                             <div className="px-3">
@@ -179,11 +180,13 @@ function UserForm({ userId, onSubmit, onCancel }) {
                                 <Form.Check inline type="radio" name="role" label="Quản trị viên" id="role-2" value={1} checked={user.role === 1} onChange={handleChange} />
                             </div>
                         </Form.Group>
+
                         <Form.Group className="mb-3 text-white">
                             <Form.Label>Hình ảnh đại diện</Form.Label>
                             <Form.Control type="file" name="avatar" accept="image/png, image/jpeg, image/gif" onChange={handleChange} multiple />
                             <Form.Text className="text-danger">{errors.get('avatar')}</Form.Text>
                         </Form.Group>
+                        
                         <Form.Group className="mb-3 float-end text-white">
                             <Button type="button" variant="secondary" className="m-1" onClick={onCancel}>Hủy</Button>
                             <Button type="submit" variant="success" className="m-1">Lưu</Button>

@@ -106,10 +106,15 @@ function ContactForm({ contactId, onSubmit, onCancel }) {
                             <Form.Control type="text" name="content" value={contact.content} onChange={handleChange} isInvalid={errors.get('content')} />
                             <Form.Text className="text-danger">{errors.get('content')}</Form.Text>
                         </Form.Group>
+
                         <Form.Group className="mb-3 text-white">
-                            <Form.Label>Trạng thái</Form.Label>
-                            <Form.Control type="text" name="status" value={contact.status} onChange={handleChange} isInvalid={errors.get('status')} />
-                            <Form.Text className="text-danger">{errors.get('status')}</Form.Text>
+                            <Form.Label className="mr-5">Trạng thái liên hệ  </Form.Label>
+                            <div className="px-3">
+                                <Form.Check inline type="radio" name="status" label="Liên hệ mới" id="status-1" value={1} checked={contact.status === 1} onChange={handleChange} />
+                                <Form.Check inline type="radio" name="status" label="Đã nhận" id="status-2" value={2} checked={contact.status === 2} onChange={handleChange} />
+                                <Form.Check inline type="radio" name="status" label="Bị từ chôi" id="status-3" value={3} checked={contact.status === 3} onChange={handleChange} />
+
+                            </div>
                         </Form.Group>
 
                         <Form.Group className="mb-3 float-end text-white">

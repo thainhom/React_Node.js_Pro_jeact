@@ -69,26 +69,14 @@ const customerCartListReducer = createReducer(initState, {
     CHECKOUT: (state, action) => {
         const orders = window.localStorage.getItem('orders') ? JSON.parse(window.localStorage.getItem('orders')) : [];
 
-        const userLogin = (localStorage.getItem("X-API-Key"));
-        console.log(userLogin);
         const newOrder = {
-            order_id: getNextId(orders, 'order_id'),
-            serial_number: getNextId(orders),
-            user_id: userLogin.user_id,
-            order_at: moment().format('YYYY-MM-DD HH:mm:ss'),
             total_price: calculateTotal(state.cart),
-            status: 1,
             note: action.payload.note,
             orderDetails: state.cart,
-            created_at: moment().format('YYYY-MM-DD HH:mm:ss'),
-            created_by_id: userLogin.user_id,
-            updated_at: moment().format('YYYY-MM-DD HH:mm:ss'),
-            updated_by_id: userLogin.user_id,
         }
 
         window.localStorage.setItem('orders', JSON.stringify([...orders, newOrder]))
         window.localStorage.removeItem('cart')
-
 
         return {
             cart: [],

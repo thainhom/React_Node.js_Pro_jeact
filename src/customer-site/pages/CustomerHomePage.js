@@ -1,4 +1,3 @@
-
 import { Carousel } from 'react-bootstrap';
 import ProductList from '../components/products/ProductList';
 

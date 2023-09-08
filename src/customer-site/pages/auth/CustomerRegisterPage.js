@@ -139,7 +139,7 @@ function CustomerRegisterPage() {
                         SUBMIT
                     </a></button>
                 <button>
-                    <a href="/login/customer">
+                    <a href="/login">
                         <span></span>
                         <span></span>
                         <span></span>

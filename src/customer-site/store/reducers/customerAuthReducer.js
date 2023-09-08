@@ -9,6 +9,12 @@ const customerAuthReducer = createReducer({ isAuthenticate: false }, {
             isAuthenticate: true
         };
     },
+    CUSTOMER_SET_AUTH: (state, action) => {
+        return {
+            ...state,
+            isAuthenticate: true
+        };
+    },
     CUSTOMER_LOGOUT: (state, action) => {
         window.localStorage.removeItem('X-API-Key');
         return {

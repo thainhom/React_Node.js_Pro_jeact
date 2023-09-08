@@ -1,4 +1,4 @@
-import { Table, Button, Form } from "react-bootstrap";
+import { Table, Button, Form, Badge } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import moment from "moment/moment";
@@ -6,7 +6,16 @@ import moment from "moment/moment";
 import AdminPaginationComponent, { NUMBER_RECORDS_PER_PAGE } from "../../components/table/AdminPaginationComponent";
 
 import contactApi from "../../../apis/contact.api";
+const formatStatus = (status) => {
+    if (status === 1) {
+        return (<Badge bg="warning">Liên hệ mới</Badge>)
+    } else if (status === 2) {
+        return (<Badge bg="info">Đã nhận</Badge>)
+    } else if (status === 3) {
+        return (<Badge bg="danger">Bị từ chối</Badge>)
+    }
 
+}
 
 function ContactList() {
     const navigate = useNavigate();
@@ -147,7 +156,7 @@ function ContactList() {
                                 <td>{contact.full_name}</td>
                                 <td>{contact.email}</td>
                                 <td>{contact.content}</td>
-                                <td>{contact.status}</td>
+                                <td>{formatStatus(contact.status)}</td>
 
                                 <td>{moment(contact.created_at).format('YYYY-MM-DD HH:mm')}</td>
                                 <td>{moment(contact.updated_at).format('YYYY-MM-DD HH:mm')}</td>

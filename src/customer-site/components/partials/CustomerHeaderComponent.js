@@ -7,6 +7,7 @@ import Navbar from 'react-bootstrap/Navbar';
 import Badge from 'react-bootstrap/Badge';
 import authApi from "../../../apis/auth.api";
 import { logout } from "../../store/actions/customerAuthAction";
+import { IoCart } from 'react-icons/io5';
 
 function CustomerHeaderComponent() {
     const navigate = useNavigate();
@@ -49,7 +50,10 @@ function CustomerHeaderComponent() {
                         </Link>
 
                         <Link to="/cart" className="float-end m-1" >
-                            <Button variant="warning">Giỏ hàng <Badge>{numberOfItems}</Badge></Button>
+                            <IoCart style={{ fontSize: '2.5rem' }}></IoCart>{numberOfItems}
+                        </Link>
+                        <Link to="/orders" className="float-end m-1" >
+                            <Button className='text-center' variant="info">Đơn hàng</Button>
                         </Link>
                     </Container>
                     {!isAuthenticate && <Link style={{ width: '120px' }} to="/login" className="float-end m-1" >

@@ -5,30 +5,35 @@ import { checkout } from '../../store/actions/customerCartListAction';
 import { useDispatch, useSelector } from 'react-redux';
 import { useState } from 'react';
 import orderApi from '../../../apis/order.api';
+import { useNavigate } from 'react-router-dom';
 
 function Cart() {
     const dispatch = useDispatch();
+    const navigate = useNavigate();
 
     const numberOfItems = useSelector(state => state.customerCartListReducer.numberOfItems)
-    const orders = useSelector(state => state.customerCartListReducer.cart)
-    const total_price = useSelector(state => state.customerCartListReducer.total)
+    const cart = useSelector(state => state.customerCartListReducer.cart)
+    const isAuthenticate = useSelector(state => state.customerAuthReducer.isAuthenticate);
 
     const [note, setNote] = useState('');
 
     const handleCheckout = () => {
-        const isCheckout = window.confirm('Bạn có chắc chắn muốn đặt đơn hàng này ?')
+        if (!window.localStorage.getItem('X-API-Key') || !isAuthenticate) {
+            navigate('/login')
+        } else {
+            const isCheckout = window.confirm('Bạn có chắc chắn muốn đặt đơn hàng này ?')
+            if (isCheckout) {
 
-        orderApi.createOrder({
-            ...orders,
-            total_price,
-            note
-        }).then((response) => {
-            alert("Đã đặt hàng thành công")
-        })
-        if (isCheckout) {
-            dispatch(checkout({
-                note: note
-            }))
+                orderApi.createOrder({
+                    cart: cart,
+                    note: note
+                }).then((response) => {
+                    dispatch(checkout({
+                        note: note
+                    }))
+                    alert("Đã đặt hàng thành công")
+                })
+            }
         }
     }
 
