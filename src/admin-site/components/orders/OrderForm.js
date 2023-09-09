@@ -109,6 +109,12 @@ function OrderForm({ orderId, onSubmit, onCancel }) {
                             <Form.Control type="text" name="total_price" value={order.total_price} onChange={handleChange} disabled={isEdit} isInvalid={errors.get('total_price')} />
                             <Form.Text className="text-danger">{errors.get('total_price')}</Form.Text>
                         </Form.Group>
+                        <Form.Group className="mb-3 text-white">
+                            <Form.Label>Tên người đặt </Form.Label>
+                            <Form.Control type="text" name="username" value={order.username} onChange={handleChange} disabled={isEdit} isInvalid={errors.get('username')} />
+                            <Form.Text className="text-danger">{errors.get('username')}</Form.Text>
+                        </Form.Group>
+
 
                         <Form.Group className="mb-3 text-white">
                             <Form.Label className="mr-5">Trạng thái đơn hàng </Form.Label>

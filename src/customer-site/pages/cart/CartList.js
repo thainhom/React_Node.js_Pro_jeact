@@ -37,6 +37,7 @@ function CartList() {
             </thead>
             <tbody>
                 {cart.map((item, index) => {
+
                     console.log("cartList", cart);
                     return (
                         <tr>

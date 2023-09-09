@@ -31,6 +31,7 @@ function OrderList() {
     const navigate = useNavigate();
 
     const [orders, setOrders] = useState([]);
+    
     const [total, setTotal] = useState(0);
 
     const [searchInputValue, setSearchInputValue] = useState('');

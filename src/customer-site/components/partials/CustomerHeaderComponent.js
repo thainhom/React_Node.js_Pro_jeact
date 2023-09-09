@@ -53,7 +53,9 @@ function CustomerHeaderComponent() {
                             <IoCart style={{ fontSize: '2.5rem' }}></IoCart>{numberOfItems}
                         </Link>
                         <Link to="/orders" className="float-end m-1" >
-                            <Button className='text-center' variant="info">Đơn hàng</Button>
+                            <Button className='text-center' variant="info">
+                                Lịch sử đơn hàng
+                            </Button>
                         </Link>
                     </Container>
                     {!isAuthenticate && <Link style={{ width: '120px' }} to="/login" className="float-end m-1" >

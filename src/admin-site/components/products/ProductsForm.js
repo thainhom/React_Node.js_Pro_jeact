@@ -42,6 +42,7 @@ function ProductsFrom({ productId, onSubmit, onCancel }) {
     const handleChange = (event) => {
         const name = event.target.name;
         const value = event.target.value;
+        console.log(value);
 
         if (name === 'unit_price') {
             if (value === '' || !isNaN(parseFloat(value))) {
@@ -95,14 +96,20 @@ function ProductsFrom({ productId, onSubmit, onCancel }) {
 
         if (product.sku.length > 10) {
             errors.set('sku', 'Mã sản phẩm chỉ cho phép đến 10 ký tự.');
+        } else if (product.sku.length === 0) {
+            errors.set('sku', 'Mã sản phẩm không được để trống');
         }
 
         if (product.name.length < 4 || product.name.length > 100) {
-            errors.set('email', 'Địa chỉ E-mail bắt buộc nhập từ 4 đến 100 ký tự.');
+            errors.set('name', 'Địa chỉ name bắt buộc nhập từ 4 đến 100 ký tự.');
+        } else if (product.name.length === 0) {
+            errors.set('name', 'Địa chỉ name không dược để trông');
         }
 
-        if (product.category !== null && product.category.length > 20) {
+        if (product.category.length > 20) {
             errors.set('category', ' Phân loại sản phẩm  chỉ được phép nhập nhỏ hơn 20 ký tự.');
+        } else if (product.category.length === 0) {
+            errors.set('category', ' Phân loại sản phẩm  không được để trống');
         }
 
         if (!/^\d+(\.\d{0,2})?$/.test(product.unit_price)) {
@@ -111,6 +118,8 @@ function ProductsFrom({ productId, onSubmit, onCancel }) {
 
         if (product.description.length < 2) {
             errors.set('description', 'mô tả bắt buộc nhập hơn 2 ký tự ');
+        } else if (product.description.length === 0) {
+            errors.set('description', 'mô tả không được đê trông ');
         }
 
         return errors;
@@ -132,11 +141,18 @@ function ProductsFrom({ productId, onSubmit, onCancel }) {
                             <Form.Control type="text" name="name" value={product.name} onChange={handleChange} disabled={isEdit} isInvalid={errors.get('name')} />
                             <Form.Text className="text-danger">{errors.get('name')}</Form.Text>
                         </Form.Group>
+
                         <Form.Group className="mb-3 text-white">
-                            <Form.Label>Phân loại sản phẩm</Form.Label>
-                            <Form.Control type="text" name="category" value={product.category} onChange={handleChange} isInvalid={errors.get('category')} />
-                            <Form.Text className="text-danger">{errors.get('category')}</Form.Text>
+                            <Form.Label className="mr-5">Phân loại sản phẩm </Form.Label>
+                            <Form.Select aria-label="Default select example" name="category" onChange={handleChange} value={product.category} isInvalid={errors.get('category')}>
+                                <option value="">Chọn phân loại</option>
+                                <option value="Burberry">Burberry</option>
+                                <option value="Dior">Dior</option>
+                                <option value="Chanel">Chanel</option>
+                            </Form.Select>
                         </Form.Group>
+
+
                         <Form.Group className="mb-3 text-white">
                             <Form.Label>Giá tiền</Form.Label>
                             <Form.Control type="text" name="unit_price" value={product.unit_price} onChange={handleChange} isInvalid={errors.get('unit_price')} />
