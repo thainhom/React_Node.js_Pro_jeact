@@ -73,6 +73,8 @@ const customerCartListReducer = createReducer(initState, {
             total_price: calculateTotal(state.cart),
             note: action.payload.note,
             orderDetails: state.cart,
+            status: "Đơn hàng mơi",
+            serial_number: (new Date()).getTime(),
         }
 
         window.localStorage.setItem('orders', JSON.stringify([...orders, newOrder]))

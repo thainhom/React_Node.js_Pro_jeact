@@ -1,19 +1,21 @@
 import { useParams } from "react-router";
 import { useNavigate } from "react-router-dom";
-// import { getStaticResourceUrl } from "../../utilities/getStaticResource";
 import OrderForm from "../../components/orders/OrderForm";
 
 import orderApi from "../../../apis/order.api";
 import { useEffect, useState } from "react";
-import { Table } from "react-bootstrap";
+import {  Table } from "react-bootstrap";
 
 
 function OrderEdit() {
     const [orderDetail, setOrderDetail] = useState([])
+
     const navigate = useNavigate();
 
     const { id } = useParams();
-    useEffect(() => {
+
+    const getEffect = () => {
+
         orderApi.getOrderByOrderId(id)
             .then((data) => {
                 console.log(111111111, data);
@@ -24,13 +26,17 @@ function OrderEdit() {
             .catch((error) => {
                 if (error.response.status === 401) {
                     alert(error.response.statusText);
-
                     navigate('/admin/login');
                 } else {
                     alert(error.response ? error.response.statusText : "Error occurred");
                 }
             });
-    }, []);
+
+    }
+    useEffect(() => {
+        getEffect()
+    }, [id])
+
 
 
     const handleUpdate = (order) => {
@@ -49,6 +55,26 @@ function OrderEdit() {
     }
 
 
+    const handleDeleteOrderDetail = (order_detail_id) => {
+        if (window.confirm(`Bạn có chắc chắn muốn xóa đơn hàng ${order_detail_id} không ?`)) {
+            orderApi.deleteOrderDtail(order_detail_id).then(() => {
+                getEffect()
+            }).catch((error) => {
+                if (error.response && error.response.status === 401) {
+                    alert(error.response.statusText)
+                    navigate('/admin/login');
+
+                } else {
+                    alert(error.response ? error.response.statusText : "Error occurred");
+                }
+            })
+        }
+
+
+
+    };
+
+
 
 
 
@@ -62,7 +88,8 @@ function OrderEdit() {
             <Table striped bordered hover variant="dark">
                 <thead>
                     <tr>
-                        <th>Người đặt hàng</th>
+                        <th> ID người đặt hàng</th>
+                        <th> Id chi tiết đặt hàng</th>
                         <th>Mã sản phẩm</th>
                         <th>Tên sản phẩm</th>
                         <th>Số lượng</th>
@@ -73,31 +100,34 @@ function OrderEdit() {
                     </tr>
                 </thead>
                 <tbody>
+
                     {orderDetail.map((item, index) => {
                         console.log(orderDetail);
                         return (
+
                             <tr key={index}>
+
                                 <td>{item.order_id} </td>
+                                <td>{item.order_detail_id} </td>
                                 <td>{item.sku} </td>
                                 <td>{item.name} </td>
-                                {/* <td>
-                                    <img
-                                        src={getStaticResourceUrl(item.image)}
-                                        alt={item.name} width="50" height="50" />
-                                </td> */}
                                 <td>{item.quantity} </td>
                                 <td>{item.unit_price} </td>
                                 <td>{item.sub_total_price
                                 } </td>
                                 <td>{
-                                    <button className="btn btn-danger m-1">Xóa</button>
+
+                                    <button type="submit" onClick={() => handleDeleteOrderDetail(item.order_detail_id)} className="btn btn-danger m-1">Xóa</button>
+
                                 } </td>
+
                             </tr>
+
                         )
                     })}
 
                 </tbody>
-            </Table>
+            </Table >
 
         </>
     );

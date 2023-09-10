@@ -166,7 +166,7 @@ function ProductsFrom({ productId, onSubmit, onCancel }) {
 
                         <Form.Group className="mb-3 text-white">
                             <Form.Label>Hình ảnh sản phẩm</Form.Label>
-                            <Form.Control type="file" name="image" accept="image/png, image/jpeg, image/gif" onChange={handleChange} multiple />
+                            <Form.Control type="file" name="image" accept="image/png, image/jpeg, image/gif, image/jfif, image/webp" onChange={handleChange} multiple />
                             <Form.Text className="text-danger">{errors.get('image')}</Form.Text>
                         </Form.Group>
                         <Form.Group className="mb-3 float-end text-white">

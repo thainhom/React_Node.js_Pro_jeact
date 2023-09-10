@@ -49,6 +49,16 @@ const deleteOrder = async (orderId) => {
             throw error;
         });
 }
+const deleteOrderDtail = async (order_detail_id) => {
+    return await api.delete(`/order_details/${order_detail_id}`, { headers: getHeaders() })
+        .then(response => {
+            return response.data;
+        }).catch(error => {
+            console.error('API Error', error);
+            throw error;
+        });
+}
+
 
 export default {
     searchOrders,
@@ -56,4 +66,5 @@ export default {
     getOrderByOrderId,
     updateOrder,
     deleteOrder,
+    deleteOrderDtail
 };
