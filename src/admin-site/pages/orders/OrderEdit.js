@@ -4,7 +4,7 @@ import OrderForm from "../../components/orders/OrderForm";
 
 import orderApi from "../../../apis/order.api";
 import { useEffect, useState } from "react";
-import {  Table } from "react-bootstrap";
+import { Table } from "react-bootstrap";
 
 
 function OrderEdit() {
@@ -73,11 +73,6 @@ function OrderEdit() {
 
 
     };
-
-
-
-
-
 
 
     return (
