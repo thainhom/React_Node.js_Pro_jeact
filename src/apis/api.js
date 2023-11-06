@@ -6,6 +6,7 @@ const getHeaders = () => {
     return {
         'X-API-Key': window.localStorage.getItem('X-API-Key'),
     }
+    
 }
 
 export {

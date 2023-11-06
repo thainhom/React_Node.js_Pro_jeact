@@ -4,7 +4,6 @@ import { Button } from "react-bootstrap"
 import { Link } from "react-router-dom";
 import { Container } from 'react-bootstrap';
 import Navbar from 'react-bootstrap/Navbar';
-import Badge from 'react-bootstrap/Badge';
 import authApi from "../../../apis/auth.api";
 import { logout } from "../../store/actions/customerAuthAction";
 import { IoCart } from 'react-icons/io5';

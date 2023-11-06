@@ -1,6 +1,5 @@
 import { createReducer } from "@reduxjs/toolkit"
-import moment from "moment/moment";
-import getNextId from "../../../admin-site/utilities/getNextId";
+
 
 const calculateTotal = (cart) => {
     let total = 0;

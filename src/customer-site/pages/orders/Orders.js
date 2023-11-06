@@ -1,28 +1,10 @@
-import { useEffect, useState } from "react"
-import orderApi from "../../../apis/order.api"
-import { useParams } from "react-router-dom"
+
+
 import { Table } from "react-bootstrap"
 import moment from "moment"
 function Orders() {
     const orders = window.localStorage.getItem('orders') ? JSON.parse(window.localStorage.getItem('orders')) : [];
-    // const [historyOrders, setHistoryOrder] = useState([])
-    // const { id } = useParams()
-    // useEffect(() => {
-    //     if (id) {
-    //         orderApi.getOrderByOrderId(id)
-    //             .then((data) => {
-    //                 setHistoryOrder(data)
-    //                 console.log(data);
-    //             })
-    //             .catch((error) => {
-    //                 if (error.response && error.response.status === 401) {
-    //                     alert(error.response.statusText);
-    //                 } else {
-    //                     alert(error.response ? error.response.statusText : "Error occurred");
-    //                 }
-    //             });
-    //     }
-    // }, [id]);
+    
     return (
         <>
             <h1 className="text-center text-white m-3" >Lịch sử đơn hàng</h1>

@@ -43,7 +43,7 @@ function CustomerHomePage() {
                 </Carousel.Item>
             </Carousel>
             <br></br>
-            <h1 style={{ color: "white" }} className='text-center'>Danh sách sản phẩm</h1>
+            <h1 style={{ color: "white" }} className='text-center'>Danh sách sản phẩm list</h1>
 
             <ProductList />
         </>
